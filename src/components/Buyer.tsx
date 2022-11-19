@@ -17,6 +17,10 @@ import {
   Input,
   SimpleGrid,
   Stack,
+  Stat,
+  StatHelpText,
+  StatLabel,
+  StatNumber,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -26,16 +30,22 @@ import { useFirebase } from "../context/context";
 import NavBar from "./NavBar";
 import { Formik, Field } from "formik";
 import Image from "next/image";
+import TimeAgo from 'react-timeago'
+import englishStrings from 'react-timeago/lib/language-strings/en'
+import buildFormatter from 'react-timeago/lib/formatters/buildFormatter'
 
 interface BuyerProps {}
 
 export const Buyer: React.FC<BuyerProps> = ({}) => {
+  const formatter = buildFormatter(englishStrings)
+
   const { getItems, addToCart } = useFirebase();
 
   const [items, setItems] = useState([]);
 
   const [location, setLocation] = useState("");
-
+  const date = new Date();
+  console.log(date);
   const callItems = async () => {
     const res = await getItems(location);
     setItems(res);
@@ -60,7 +70,7 @@ export const Buyer: React.FC<BuyerProps> = ({}) => {
     loc();
   }, []);
   useEffect(() => {
-    // callItems();
+    callItems();
   }, [location]);
   console.log(location);
   // console.log(items);
@@ -73,14 +83,13 @@ export const Buyer: React.FC<BuyerProps> = ({}) => {
           initialValues={{
             location: "",
           }}
-          onSubmit={(values) => {
+          onSubmit={async (values) => {
             const locstr =
               values.location.charAt(0).toUpperCase() +
               values.location.slice(1).toLowerCase();
-
             setLocation(locstr);
             callItems();
-            values.location = "";
+            // values.location = "";
           }}
         >
           {({ handleSubmit, errors, touched }) => (
@@ -88,7 +97,6 @@ export const Buyer: React.FC<BuyerProps> = ({}) => {
               <Flex p={12}>
                 <Flex flex={0.8} p={1}>
                   <FormControl>
-                    {/* <FormLabel htmlFor="location">Type your city name</FormLabel> */}
                     <Field
                       as={Input}
                       id="location"
@@ -130,11 +138,13 @@ export const Buyer: React.FC<BuyerProps> = ({}) => {
                 <Image src={item.URLS[0]} alt="" width={300} height={300} />
                 <Stack mt="6" spacing="3">
                   <Heading size="md">{item.name}</Heading>
-                  <Text>
-                    {item.location} {item.vendor}
-                  </Text>
+                  <Text>by {item.vendor}</Text>
                   <Text color="blue.600" fontSize="2xl">
-                    {item.price}
+                    <Stat>
+                      <StatLabel>Price</StatLabel>
+                      <StatNumber>₹{item.price}/Kg</StatNumber>
+                      <StatHelpText> <TimeAgo date={item.dateStr} formatter={formatter}/> </StatHelpText>
+                    </Stat>
                   </Text>
                 </Stack>
               </CardBody>

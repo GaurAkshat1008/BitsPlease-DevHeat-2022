@@ -15,6 +15,7 @@ import NavBar from "./NavBar";
 export const Vendor = ({}) => {
   const { addItems } = useFirebase();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  
   return (
     <>
       <NavBar varient="vendor" />
@@ -45,6 +46,7 @@ export const Vendor = ({}) => {
                 vendor: "",
                 itemName: "",
                 itemPrice: "",
+                quantity: "",
                 images: null,
               }}
               onSubmit={(values) => {
@@ -53,13 +55,15 @@ export const Vendor = ({}) => {
                   values.itemName,
                   values.itemPrice,
                   values.location,
-                  values.images
+                  values.images,
+                  values.quantity,
                 );
                 values.location = "";
                 values.vendor = "";
                 values.itemName = "";
                 values.itemPrice = "";
                 values.images = null;
+                values.quantity = "";
                 // window.location.reload();
               }}
             >
@@ -116,6 +120,18 @@ export const Vendor = ({}) => {
                           variant="outline"
                           placeholder="For how much?"
                           color={"white"}
+                          required
+                        />
+                      </FormControl>
+                      <FormControl mb={4}>
+                        <Field
+                          as={Input}
+                          id="quantity"
+                          name="quantity"
+                          type="text"
+                          variant="outline"
+                          placeholder="How much do you have?"
+                          color={"black"}
                           required
                         />
                       </FormControl>

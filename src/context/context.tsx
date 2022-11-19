@@ -67,7 +67,8 @@ export function FunctionProvider({ children }) {
     name: any,
     price: any,
     location: string,
-    images: any
+    images: any,
+    quantity: any
   ) {
     const id = v4();
     const imgUrls = [];
@@ -85,6 +86,8 @@ export function FunctionProvider({ children }) {
       // imgUrls[i] = url;
       imgUrls.push(url);
     }
+    const date = new Date();
+    const dateStr = date.toISOString();
     const item = {
       id,
       vendor: auth.currentUser.displayName,
@@ -92,6 +95,8 @@ export function FunctionProvider({ children }) {
       price: price,
       location,
       URLS: imgUrls,
+      quantity,
+      dateStr
     };
     console.log(item)
     await setDoc(doc(db, "items", id), item, { merge: true });
