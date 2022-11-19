@@ -79,6 +79,7 @@
   "integrity" "sha512-UlJQPkFqFULIcyW5sbzgbkxn2FKRgwWiRexcuaR8RNJRy8+LLveqPjwZV/bwrLZCN0eUHD/x8D0heK1ozuoo6Q=="
   "resolved" "https://registry.npmjs.org/@babel/helper-hoist-variables/-/helper-hoist-variables-7.18.6.tgz"
   "version" "7.18.6"
+<<<<<<< HEAD
   dependencies:
     "@babel/types" "^7.18.6"
 
@@ -89,6 +90,18 @@
   dependencies:
     "@babel/types" "^7.18.6"
 
+=======
+  dependencies:
+    "@babel/types" "^7.18.6"
+
+"@babel/helper-module-imports@^7.16.7", "@babel/helper-module-imports@^7.18.6":
+  "integrity" "sha512-0NFvs3VkuSYbFi1x2Vd6tKrywq+z/cLeYC/RJNFrIX/30Bf5aiGYbtvGXolEktzJH8o5E5KJ3tT+nkxuuZFVlA=="
+  "resolved" "https://registry.npmjs.org/@babel/helper-module-imports/-/helper-module-imports-7.18.6.tgz"
+  "version" "7.18.6"
+  dependencies:
+    "@babel/types" "^7.18.6"
+
+>>>>>>> 3c2c9ab6223c1a54df7a3c0ceb43ed4a24f3e3ef
 "@babel/helper-module-transforms@^7.20.2":
   "integrity" "sha512-zvBKyJXRbmK07XhMuujYoJ48B5yvvmM6+wcpv6Ivj4Yg6qO7NOZOSnvZN9CRl1zz1Z4cKf8YejmCMh8clOoOeA=="
   "resolved" "https://registry.npmjs.org/@babel/helper-module-transforms/-/helper-module-transforms-7.20.2.tgz"
@@ -1590,9 +1603,15 @@
   "resolved" "https://registry.npmjs.org/@next/env/-/env-13.0.3.tgz"
   "version" "13.0.3"
 
+<<<<<<< HEAD
 "@next/swc-win32-x64-msvc@13.0.3":
   "integrity" "sha512-IAptmSqA7k4tQzaw2NAkoEjj3+Dz9ceuvlEHwYh770MMDL4V0ku2m+UHrmn5HUCEDHhgwwjg2nyf6728q2jr1w=="
   "resolved" "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-13.0.3.tgz"
+=======
+"@next/swc-darwin-x64@13.0.3":
+  "integrity" "sha512-jaI2CMuYWvUtRixV3AIjUhnxUDU1FKOR+8hADMhYt3Yz+pCKuj4RZ0n0nY5qUf3qT1AtvnJXEgyatSFJhSp/wQ=="
+  "resolved" "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-13.0.3.tgz"
+>>>>>>> 3c2c9ab6223c1a54df7a3c0ceb43ed4a24f3e3ef
   "version" "13.0.3"
 
 "@popperjs/core@^2.9.3":
