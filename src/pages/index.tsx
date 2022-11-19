@@ -104,14 +104,14 @@ const Index: React.FC<{}> = ({}) => {
     );
   } else {
     if (occupation === "vendor") {
-      body = <Buyer />;
-    } else if (occupation === "buyer") {
       body = <Vendor />;
+    } else if (occupation === "buyer") {
+      body = <Buyer />;
     }
   }
 
   return (
-    <Box minH={"100vh"} display={'flex'} flexDirection={"column"} alignItems={'center'} bgColor={"#20272d"}>
+    <Box minH={"100vh"} display={'flex'} flexDirection={"column"} alignItems={'center'} bgColor={"beigez"}>
       {/* <Button onClick={gSignOut}>Sign out</Button> */}
       {body}
       {/* <Buyer /> */}
