@@ -70,7 +70,9 @@ export const Buyer: React.FC<BuyerProps> = ({}) => {
     loc();
   }, []);
   useEffect(() => {
-    callItems();
+    if(location !== undefined){
+      callItems();
+    }
   }, [location]);
   console.log(location);
   // console.log(items);
@@ -132,17 +134,17 @@ export const Buyer: React.FC<BuyerProps> = ({}) => {
           templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
           spacing={4}
         >
-          {items.map((item) => (
+          {items.length!==0 ? items.map((item) => (
             <Card maxW="sm" bgColor={"#55a6af"}>
               <CardBody>
-                <Image src={item.URLS[0]} alt="" width={300} height={300} />
+                <Image src={item.URLS[0]} alt="" width={400} height={200} />
                 <Stack mt="6" spacing="3">
                   <Heading size="md">{item.name}</Heading>
                   <Text>by {item.vendor}</Text>
                   <Text color="blue.600" fontSize="2xl">
-                    <Stat>
+                    <Stat color={'black'}>
                       <StatLabel>Price</StatLabel>
-                      <StatNumber>₹{item.price}/Kg</StatNumber>
+                      <StatNumber >₹{item.price}/Kg ({item.quantity}Kg)</StatNumber>
                       <StatHelpText> <TimeAgo date={item.dateStr} formatter={formatter}/> </StatHelpText>
                     </Stat>
                   </Text>
@@ -163,7 +165,9 @@ export const Buyer: React.FC<BuyerProps> = ({}) => {
                 </ButtonGroup>
               </CardFooter>
             </Card>
-          ))}
+          )) : <Flex align={'center'} justifyContent={'center'} w={'90vw'}>
+              <Image src="/sorry.svg" height={100} width={500} alt=""/>
+            </Flex>}
         </SimpleGrid>
       </Stack>
     </Flex>

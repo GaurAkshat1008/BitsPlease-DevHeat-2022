@@ -16,7 +16,6 @@ import {
 import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 
-
 const context = createContext(null);
 export function useFirebase() {
   return useContext(context);
@@ -41,19 +40,18 @@ export function FunctionProvider({ children }) {
     const itemsids = data.item_id;
     const cartRef = collection(db, "items");
     let list = [];
-    console.log(exists);
+    // console.log(itemsids);
     if (exists) {
-      itemsids.forEach(async (id: any) => {
-        const q = query(cartRef, where("id", "==", id));
+      for (let i = 0; i < itemsids.length; i++) {
+        const q = query(cartRef, where("id", "==", itemsids[i]));
         const querySnapshot = getDocs(q);
         (await querySnapshot).forEach((doc) => {
-          console.log(doc.data());
           list.push(doc.data());
         });
-        console.log(list);
-        return list;
-      });
+      }
     }
+    // console.log(list);
+    return list;
   }
   async function addToCart(id: string) {
     const data = {
@@ -96,9 +94,9 @@ export function FunctionProvider({ children }) {
       location,
       URLS: imgUrls,
       quantity,
-      dateStr
+      dateStr,
     };
-    console.log(item)
+    console.log(item);
     await setDoc(doc(db, "items", id), item, { merge: true });
   }
 
@@ -118,6 +116,7 @@ export function FunctionProvider({ children }) {
       const data = {
         occupation: occ,
         user: auth.currentUser.email,
+        item_id: [],
       };
       // console.log(data);
       await setDoc(doc(db, "users", auth.currentUser.uid), data, {
