@@ -135,16 +135,18 @@ export const Buyer: React.FC<BuyerProps> = ({}) => {
           spacing={4}
         >
           {items.length!==0 ? items.map((item) => (
-            <Card maxW="sm" bgColor={"#55a6af"}>
+            <Card maxW="sm" border={"2px solid #55a6af"}>
               <CardBody>
-                <Image src={item.URLS[0]} alt="" width={400} height={200} />
+                <Flex flex={0.4}>
+                <Image src={item.URLS[0]} alt="" layout="intrinsic" width={300} height={300} />
+                </Flex>
                 <Stack mt="6" spacing="3">
                   <Heading size="md">{item.name}</Heading>
                   <Text>by {item.vendor}</Text>
                   <Text color="blue.600" fontSize="2xl">
-                    <Stat color={'black'}>
+                    <Stat color={"#55a6af"}>
                       <StatLabel>Price</StatLabel>
-                      <StatNumber >₹{item.price}/Kg ({item.quantity}Kg)</StatNumber>
+                      <StatNumber  fontWeight={'700'}>₹{item.price}/Kg ({item.quantity}Kg)</StatNumber>
                       <StatHelpText> <TimeAgo date={item.dateStr} formatter={formatter}/> </StatHelpText>
                     </Stat>
                   </Text>
@@ -154,8 +156,8 @@ export const Buyer: React.FC<BuyerProps> = ({}) => {
               <CardFooter>
                 <ButtonGroup spacing="2">
                   <Button
-                    variant="outline"
-                    colorScheme="blue"
+                    variant="solid"
+                    colorScheme="teal"
                     onClick={() => {
                       addToCart(item.id);
                     }}

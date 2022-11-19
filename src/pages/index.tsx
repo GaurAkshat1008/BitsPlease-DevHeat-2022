@@ -104,9 +104,9 @@ const Index: React.FC<{}> = ({}) => {
     );
   } else {
     if (occupation === "vendor") {
-      body = <Buyer />;
-    } else if (occupation === "buyer") {
       body = <Vendor />;
+    } else if (occupation === "buyer") {
+      body = <Buyer />;
     }
   }
 

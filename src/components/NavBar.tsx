@@ -28,7 +28,7 @@ const NavBar: React.FC<NavBarProps> = ({ varient }) => {
   const { isSigned, user, pending } = useAuth();
   // console.log(user);
   return (
-    <Flex bgColor={"#0076ff"} w={"100%"} h={"max-content"} p={2} pos={"fixed"} top={0} zIndex={10}>
+    <Flex bgColor={"#0039a6"} w={"100%"} h={"max-content"} p={2} pos={"fixed"} top={0} zIndex={10}>
       <Menu>
         <MenuButton as={Button} rightIcon={<TriangleDownIcon />} ml={"auto"}>
           {auth && auth.currentUser && auth.currentUser.displayName}
