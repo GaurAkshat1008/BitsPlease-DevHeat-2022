@@ -49,7 +49,7 @@ const cart: React.FC<cartProps> = ({}) => {
     // setAmt(0);
   }, [user]);
 
-  let amt = 0
+  let amt = 0;
   // setFamt(amt)
   return (
     <>
@@ -63,62 +63,74 @@ const cart: React.FC<cartProps> = ({}) => {
           {items.length !== 0 ? (
             items.map((item, i) => {
               amt += item.price * quant[i];
-              console.log(amt);
-              return(
-              <Card maxW="sm" bgColor={"#55a6af"}>
-                <CardBody>
-                  <Image src={item.URLS[0]} alt="" width={400} height={200} />
-                  <Stack mt="6" spacing="3">
-                    <Heading size="md">{item.name}</Heading>
-                    <Text>by {item.vendor}</Text>
-                    <Text color="blue.600" fontSize="2xl">
-                      <Stat color={"black"}>
-                        <StatLabel>Price</StatLabel>
-                        <StatNumber>₹{item.price}/Kg</StatNumber>
-                      </Stat>
-                    </Text>
-                  </Stack>
-                </CardBody>
-                <Divider />
-                <CardFooter>
-                  <ButtonGroup spacing="2">
-                    <IconButton
-                      icon={<ChevronLeftIcon />}
-                      onClick={() => {
-                        if (quant[i] > 1) {
-                          setQuant((quant) => [
-                            ...quant.slice(0, i),
-                            quant[i] - 1,
-                            ...quant.slice(i + 1),
-                          ]);
-                          // calcAmt();
-                          // console.log(quant)
-                          // setAmt(amt + item.price * quant[i]);
-                        }
-                      }}
-                      aria-label=""
-                    />
-                    <Text as={Button}>{quant[i]}</Text>
-                    <IconButton
-                      icon={<ChevronRightIcon />}
-                      onClick={() => {
-                        if (quant[i] < item.quantity) {
-                          setQuant((quant) => [
-                            ...quant.slice(0, i),
-                            quant[i] + 1,
-                            ...quant.slice(i + 1),
-                          ]);
-                          // calcAmt();
-                          // console.log(quant)
-                          // setAmt(amt + item.price * quant[i]);
-                        }
-                      }}
-                      aria-label=""
-                    />
-                  </ButtonGroup>
-                </CardFooter>
-              </Card>
-            )})
+              // console.log(amt);
+              return (
+                <Card maxW="sm" border={"2px solid #55a6af"}>
+                  <CardBody>
+                    <Flex direction={'column'}>
+                      <Flex flex={0.6}>
+                        <Image
+                          src={item.URLS[0]}
+                          alt=""
+                          width={400}
+                          height={1000}
+                        />
+                      </Flex>
+                      <Flex flex={0.4}>
+                        <Stack mt="6" spacing="3">
+                          <Heading size="md">{item.name}</Heading>
+                          <Text>by {item.vendor}</Text>
+                          <Text color="blue.600" fontSize="2xl">
+                            <Stat color={"black"}>
+                              <StatLabel>Price</StatLabel>
+                              <StatNumber>₹{item.price}/Kg</StatNumber>
+                            </Stat>
+                          </Text>
+                        </Stack>
+                      </Flex>
+                    </Flex>
+                  </CardBody>
+                  <Divider />
+                  <CardFooter>
+                    <ButtonGroup spacing="2">
+                      <IconButton
+                        icon={<ChevronLeftIcon />}
+                        onClick={() => {
+                          if (quant[i] > 1) {
+                            setQuant((quant) => [
+                              ...quant.slice(0, i),
+                              quant[i] - 1,
+                              ...quant.slice(i + 1),
+                            ]);
+                            // calcAmt();
+                            // console.log(quant)
+                            // setAmt(amt + item.price * quant[i]);
+                          }
+                        }}
+                        aria-label=""
+                      />
+                      <Text as={Button}>{quant[i]}</Text>
+                      <IconButton
+                        icon={<ChevronRightIcon />}
+                        onClick={() => {
+                          if (quant[i] < item.quantity) {
+                            setQuant((quant) => [
+                              ...quant.slice(0, i),
+                              quant[i] + 1,
+                              ...quant.slice(i + 1),
+                            ]);
+                            // calcAmt();
+                            // console.log(quant)
+                            // setAmt(amt + item.price * quant[i]);
+                          }
+                        }}
+                        aria-label=""
+                      />
+                    </ButtonGroup>
+                  </CardFooter>
+                </Card>
+              );
+            })
           ) : (
             <Flex align={"center"} justifyContent={"center"} w={"90vw"}>
               <Image src="/sorry.svg" height={100} width={500} alt="" />

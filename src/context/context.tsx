@@ -35,6 +35,21 @@ export function FunctionProvider({ children }) {
     return list;
   }
 
+  async function getSelfItems() {
+    const citiesRef = collection(db, "items");
+    let list = [];
+    if (auth) {
+      const q = query(citiesRef, where("vendor", "==", auth.currentUser.email));
+      const querySnapshot = getDocs(q);
+      (await querySnapshot).forEach((doc) => {
+        list.push(doc.data());
+      });
+    }
+    // console.log(list)
+    return list;
+  }
+  
+
   async function getCartItems() {
     const { data, exists } = await getUser();
     const itemsids = data.item_id;
@@ -61,7 +76,6 @@ export function FunctionProvider({ children }) {
   }
 
   async function addItems(
-    vendor: any,
     name: any,
     price: any,
     location: string,
@@ -88,7 +102,7 @@ export function FunctionProvider({ children }) {
     const dateStr = date.toISOString();
     const item = {
       id,
-      vendor: auth.currentUser.displayName,
+      vendor: auth.currentUser.email,
       name: name,
       price: price,
       location,
@@ -225,6 +239,7 @@ export function FunctionProvider({ children }) {
     addItems,
     getLocation,
     getCartItems,
+    getSelfItems
   };
   return (
     <context.Provider value={value}>{!loading && children}</context.Provider>

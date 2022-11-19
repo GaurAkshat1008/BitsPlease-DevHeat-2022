@@ -28,24 +28,54 @@ const NavBar: React.FC<NavBarProps> = ({ varient }) => {
   const { isSigned, user, pending } = useAuth();
   // console.log(user);
   return (
-    <Flex bgColor={"#0039a6"} w={"100%"} h={"max-content"} p={2} pos={"fixed"} top={0} zIndex={10}>
+    <Flex
+      bgColor={"#0039a6"}
+      w={"100%"}
+      h={"max-content"}
+      p={2}
+      pos={"fixed"}
+      top={0}
+      zIndex={10}
+    >
       <Menu>
         <MenuButton as={Button} rightIcon={<TriangleDownIcon />} ml={"auto"}>
           {auth && auth.currentUser && auth.currentUser.displayName}
         </MenuButton>
         <MenuList>
-          {varient === "buyer" && <MenuItem onClick={() => {
-            router.push("/cart")
-          }}>Cart</MenuItem>}
-          {varient === "vendor" && <MenuItem onClick={() => {
-            router.push("/orders")
-          }}>Orders</MenuItem>}
-          {varient === "vendor" && <MenuItem onClick={() => {
-            router.push("/items")
-          }}>Items</MenuItem>}
-          <MenuItem onClick={() => {
-            router.push("/profile")
-          }}>Profile</MenuItem>
+          {varient === "buyer" && (
+            <MenuItem
+              onClick={() => {
+                router.push("/cart");
+              }}
+            >
+              Cart
+            </MenuItem>
+          )}
+          {varient === "vendor" && (
+            <MenuItem
+              onClick={() => {
+                router.push("/orders");
+              }}
+            >
+              Orders
+            </MenuItem>
+          )}
+          {varient === "vendor" && (
+            <MenuItem
+              onClick={() => {
+                router.push("/items");
+              }}
+            >
+              Items
+            </MenuItem>
+          )}
+          <MenuItem
+            onClick={() => {
+              router.push("/profile");
+            }}
+          >
+            Profile
+          </MenuItem>
           <MenuDivider />
           <MenuItem
             onClick={() => {
