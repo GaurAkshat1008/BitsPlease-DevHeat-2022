@@ -1,9 +1,10 @@
 import { onAuthStateChanged } from "@firebase/auth";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
-import { auth, db } from "../firebase/firebase";
+import { auth, db, storage } from "../firebase/firebase";
 import Cookies from "js-cookie";
 import {
+  arrayUnion,
   collection,
   doc,
   getDoc,
@@ -12,7 +13,9 @@ import {
   setDoc,
   where,
 } from "firebase/firestore";
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
+
 
 const context = createContext(null);
 export function useFirebase() {
@@ -33,10 +36,29 @@ export function FunctionProvider({ children }) {
     return list;
   }
 
+  async function getCartItems() {
+    const { data, exists } = await getUser();
+    const itemsids = data.item_id;
+    const cartRef = collection(db, "items");
+    let list = [];
+    console.log(exists);
+    if (exists) {
+      itemsids.forEach(async (id: any) => {
+        const q = query(cartRef, where("id", "==", id));
+        const querySnapshot = getDocs(q);
+        (await querySnapshot).forEach((doc) => {
+          console.log(doc.data());
+          list.push(doc.data());
+        });
+        console.log(list);
+        return list;
+      });
+    }
+  }
   async function addToCart(id: string) {
     const data = {
-      id: id,
-    }
+      item_id: arrayUnion(id),
+    };
     await setDoc(doc(db, "users", auth.currentUser.uid), data, { merge: true });
   }
 
@@ -44,27 +66,45 @@ export function FunctionProvider({ children }) {
     vendor: any,
     name: any,
     price: any,
-    details: any,
-    location: string
-    ) {
-      const id = v4();
+    location: string,
+    images: any
+  ) {
+    const id = v4();
+    const imgUrls = [];
+    for (let i = 0; i < images.length; i++) {
+      const imageRef = ref(
+        storage,
+        `images/${auth.currentUser.email}/${images[i].name + v4()}`
+      );
+      // console.log(images[i])
+      // console.log(`images/${auth.currentUser.email}/${images[i].name + v4()}`);
+      await uploadBytes(imageRef, images[i]).then(() => {
+        console.log("uploaded");
+      });
+      const url = await getDownloadURL(imageRef);
+      // imgUrls[i] = url;
+      imgUrls.push(url);
+    }
     const item = {
       id,
-      vendor: vendor,
+      vendor: auth.currentUser.displayName,
       name: name,
       price: price,
-      details,
       location,
+      URLS: imgUrls,
     };
+    console.log(item)
     await setDoc(doc(db, "items", id), item, { merge: true });
   }
-  
-  async function getLocation(location:string) {
-    if(auth){
+
+  async function getLocation(location: string) {
+    if (auth) {
       const data = {
         location: location,
-      }
-      await setDoc(doc(db, "users", auth.currentUser.uid), data, { merge: true });
+      };
+      await setDoc(doc(db, "users", auth.currentUser.uid), data, {
+        merge: true,
+      });
     }
   }
 
@@ -85,7 +125,7 @@ export function FunctionProvider({ children }) {
     const docRef = doc(db, "users", auth.currentUser.uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      console.log(docSnap.data());
+      // console.log(docSnap.data());
     } else {
       console.log("No such document!");
     }
@@ -180,6 +220,7 @@ export function FunctionProvider({ children }) {
     getItems,
     addItems,
     getLocation,
+    getCartItems,
   };
   return (
     <context.Provider value={value}>{!loading && children}</context.Provider>

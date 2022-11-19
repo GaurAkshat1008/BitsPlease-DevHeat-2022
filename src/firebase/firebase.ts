@@ -18,13 +18,19 @@ const firebaseConfig = {
   // messagingSenderId: "895857525635",
   // appId: "1:895857525635:web:7f34de0b603c256c492cb6",
   // measurementId: "G-KVYKXGK4VH"
-  apiKey: "AIzaSyAcWh5izjNtle10v4UiJXx8SjkdwqV3Jqs",
-  authDomain: "projectalpha-76dbc.firebaseapp.com",
-  projectId: "projectalpha-76dbc",
-  storageBucket: "projectalpha-76dbc.appspot.com",
-  messagingSenderId: "332373726321",
-  appId: "1:332373726321:web:ff5b7f13db4c1da090b7d0",
-  measurementId: "G-24NY5KXK2E"
+  // apiKey: "AIzaSyAcWh5izjNtle10v4UiJXx8SjkdwqV3Jqs",
+  // authDomain: "projectalpha-76dbc.firebaseapp.com",
+  // projectId: "projectalpha-76dbc",
+  // storageBucket: "projectalpha-76dbc.appspot.com",
+  // messagingSenderId: "332373726321",
+  // appId: "1:332373726321:web:ff5b7f13db4c1da090b7d0",
+  // measurementId: "G-24NY5KXK2E"
+  apiKey: "AIzaSyAYUEa8OzpeCs7WbMnLz9jLfS-C7QGdQlU",
+  authDomain: "playerone-527ed.firebaseapp.com",
+  projectId: "playerone-527ed",
+  storageBucket: "playerone-527ed.appspot.com",
+  messagingSenderId: "609507798635",
+  appId: "1:609507798635:web:41e1ce255891a42a024b2e"
 };
 
 const app = initializeApp(firebaseConfig);

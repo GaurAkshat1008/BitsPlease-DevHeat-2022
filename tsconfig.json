@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/components/Thumb.tsx", "src/components/Vendor.tsx"  ],
   "exclude": [
     "node_modules"
   ]
