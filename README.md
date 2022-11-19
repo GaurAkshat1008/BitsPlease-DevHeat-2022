@@ -1,39 +1,43 @@
-# Example app with [chakra-ui](https://github.com/chakra-ui/chakra-ui) and TypeScript
 
-This example features how to use [chakra-ui](https://github.com/chakra-ui/chakra-ui) as the component library within a Next.js app with TypeScript.
+# VenDoor - Buy & Sell fresh products
 
-Next.js and chakra-ui have built-in TypeScript declarations, so we'll get autocompletion for their modules straight away.
+An online marketplace to buy and sell fresh products.
 
-We are connecting the Next.js `_app.js` with `chakra-ui`'s Provider and theme so the pages can have app-wide dark/light mode. We are also creating some components which shows the usage of `chakra-ui`'s style props.
+Sign up as a vendor or buyer. 
 
-## Deploy your own
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-chakra-ui)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-chakra-ui&project-name=with-chakra-ui&repository-name=with-chakra-ui)
 
-## How to use
+## 💡Idea
 
-### Using `create-next-app`
+Traffic on roads is a major concern in cities. Many streets are blocked by roadside vendors which may create problems for common people.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
-```bash
-npx create-next-app --example with-chakra-ui with-chakra-ui-app
-```
+We aim to solve that problem by creating a marketplace for local vendors to display their fresh products to a large audience in their area by listing them on the website.
 
-```bash
-yarn create next-app --example with-chakra-ui with-chakra-ui-app
-```
 
-```bash
-pnpm create next-app --example with-chakra-ui with-chakra-ui-app
-```
+As a buyer, various products by different vendors in the area can be chosen and they will be delivered to the doorstep.
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
 
-## Notes
+## 🔷 Vendor Features
 
-Chakra has supported Gradients and RTL in `v1.1`. To utilize RTL, [add RTL direction and swap](https://chakra-ui.com/docs/features/rtl-support).
+- List products available for purcchase
+- Set price
+- Add pictures 
+- See orders recieved
+## 🔷 Buyer Features
 
-If you don't have multi-direction app, you should make `<Html lang="ar" dir="rtl">` inside `_document.ts`.
+- Search for fresh products
+- Filter products by location
+- Place order for a product
+- Make payment
+
+## 🔗 [Demo](https://www.youtube.com/) Link
+
+
+## 🔥 Team
+
+[Akshat Gaur](https://github.com/jueviole-grace/) </br>
+[Aditya Jadhav](https://github.com/adityajadhav02/) </br>
+[Shivam Patel](https://github.com/ShivamPatel59/) </br>
+[Varun Singhal](https://github.com/VarunSinghal07/)
